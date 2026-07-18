@@ -1,24 +1,48 @@
 {
   "expo": {
-    "name": "armec-task",
+    "name": "آرمک تسک",
     "slug": "armec-task",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "locale": "fa",
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.armec.task",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "SCHEDULE_EXACT_ALARM",
+        "USE_EXACT_ALARM",
+        "POST_NOTIFICATIONS",
+        "VIBRATE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-localization",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#7FB5E6"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "armec-task-0001"
+      }
     }
   }
 }
