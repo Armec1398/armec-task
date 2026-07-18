@@ -14,6 +14,7 @@ import { theme } from './src/theme';
 import { ThemeProvider } from './src/ThemeContext';
 import { requestPermission, scheduleAllAlarms, scheduleSnooze } from './src/notifications';
 import { loadSettings } from './src/storage';
+import ErrorBoundary from './src/ErrorBoundary';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,11 +31,16 @@ export default function App() {
   }, []);
 
   async function init() {
-    await requestPermission();
-    await scheduleAllAlarms();
+    try {
+      await requestPermission();
+      await scheduleAllAlarms();
+    } catch (e) {
+      console.log('init error:', e);
+    }
   }
 
   return (
+    <ErrorBoundary>
     <ThemeProvider>
       <NavigationContainer>
       <Tab.Navigator
@@ -65,6 +71,7 @@ export default function App() {
         <Tab.Screen name="گزارش" component={ReportScreen} />
       </Tab.Navigator>
       </NavigationContainer>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
