@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "locale": "fa",
     "ios": {
       "supportsTablet": true
     },
@@ -37,7 +36,8 @@
           "icon": "./assets/notification-icon.png",
           "color": "#7FB5E6"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "extra": {
       "eas": {
