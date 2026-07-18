@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as XLSX from 'xlsx';
-import * as FileSystem from 'react-native-fs';
-import * as DocumentPicker from 'react-native-document-picker';
+import * as FileSystem from 'expo-file-system';
+import * as DocumentPicker from 'expo-document-picker';
 import { loadTasks, loadCategories, exportAll, importAll } from '../storage';
 import { formatDateTime } from '../calendar';
 import { theme as _theme } from '../theme';
@@ -37,8 +37,8 @@ export default function ReportScreen() {
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'گزارش');
       const wbout = XLSX.write(wb, { type: 'base64', bookType: 'xlsx' });
-      const path = `${FileSystem.DocumentDirectoryPath}/armec_report_${Date.now()}.xlsx`;
-      await FileSystem.writeFile(path, wbout, 'base64');
+      const path = `${FileSystem.documentDirectory}armec_report_${Date.now()}.xlsx`;
+      await FileSystem.writeAsStringAsync(path, wbout, { encoding: FileSystem.EncodingType.Base64 });
       Alert.alert('آماده شد', `فایل اکسل ذخیره شد:\n${path}`);
     } catch (e) {
       Alert.alert('خطا', String(e.message || e));
@@ -49,16 +49,17 @@ export default function ReportScreen() {
     setBusy(true);
     try {
       const data = await exportAll();
-      const path = `${FileSystem.DocumentDirectoryPath}/armec_backup_${Date.now()}.json`;
-      await FileSystem.writeFile(path, JSON.stringify(data), 'utf8');
+      const path = `${FileSystem.documentDirectory}armec_backup_${Date.now()}.json`;
+      await FileSystem.writeAsStringAsync(path, JSON.stringify(data), { encoding: FileSystem.EncodingType.UTF8 });
       Alert.alert('بکاپ', `فایل بکاپ ذخیره شد:\n${path}`);
     } catch (e) { Alert.alert('خطا', String(e.message || e)); } finally { setBusy(false); }
   }
 
   async function importData() {
     try {
-      const res = await DocumentPicker.pick({ type: [DocumentPicker.types.allFiles, 'application/json'] });
-      const content = await FileSystem.readFile(res[0].uri, 'utf8');
+      const res = await DocumentPicker.getDocumentAsync({ type: ['application/json', '*/*'], copyToCacheDirectory: true });
+      if (res.canceled || !res.assets || !res.assets.length) return;
+      const content = await FileSystem.readAsStringAsync(res.assets[0].uri, { encoding: FileSystem.EncodingType.UTF8 });
       await importAll(JSON.parse(content));
       await refresh();
       Alert.alert('موفق', 'داده‌ها بازیابی شدند.');
