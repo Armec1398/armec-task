@@ -3,12 +3,14 @@ import { View, Text, TouchableOpacity, ScrollView, Modal, StyleSheet, FlatList }
 import { Ionicons } from '@expo/vector-icons';
 import { loadTasks, loadCategories } from '../storage';
 import { startOfMonthGrid, toJalali, formatTime, WEEKDAY_LABELS, addDays } from '../calendar';
-import { theme, priorityBg } from '../theme';
+import { theme as _theme, priorityBg } from '../theme';
 import { RECURRENCE } from '../storage';
+import { useTheme } from '../ThemeContext';
 
 function dayKey(y, m, d) { return `${y}-${m}-${d}`; }
 
 export default function CalendarScreen() {
+  const { theme } = useTheme();
   const today = toJalali(new Date());
   const [year, setYear] = useState(today.year);
   const [month, setMonth] = useState(today.month);

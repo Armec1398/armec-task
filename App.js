@@ -11,6 +11,7 @@ import CategoriesScreen from './src/screens/CategoriesScreen';
 import ReportScreen from './src/screens/ReportScreen';
 
 import { theme } from './src/theme';
+import { ThemeProvider } from './src/ThemeContext';
 import { requestPermission, scheduleAllAlarms, scheduleSnooze } from './src/notifications';
 import { loadSettings } from './src/storage';
 
@@ -34,7 +35,8 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerStyle: { backgroundColor: theme.surface },
@@ -62,6 +64,7 @@ export default function App() {
         <Tab.Screen name="دسته‌ها" component={CategoriesScreen} />
         <Tab.Screen name="گزارش" component={ReportScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }

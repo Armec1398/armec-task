@@ -6,10 +6,12 @@ import * as FileSystem from 'react-native-fs';
 import * as DocumentPicker from 'react-native-document-picker';
 import { loadTasks, loadCategories, exportAll, importAll } from '../storage';
 import { formatDateTime } from '../calendar';
-import { theme } from '../theme';
+import { theme as _theme } from '../theme';
 import { PRIORITY_LABEL, RECURRENCE_LABEL } from '../storage';
+import { useTheme } from '../ThemeContext';
 
 export default function ReportScreen() {
+  const { theme } = useTheme();
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [busy, setBusy] = useState(false);

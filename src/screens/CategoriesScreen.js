@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, Modal, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { loadCategories, saveCategories, createId } from '../storage';
-import { theme } from '../theme';
+import { theme as _theme } from '../theme';
+import { useTheme } from '../ThemeContext';
 
 const COLORS = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#A0C4FF', '#BDB2FF', '#9BF6FF', '#FFC6FF'];
 
 export default function CategoriesScreen() {
+  const { theme } = useTheme();
   const [cats, setCats] = useState([]);
   const [modal, setModal] = useState(false);
   const [name, setName] = useState('');

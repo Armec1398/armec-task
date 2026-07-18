@@ -9,10 +9,12 @@ import {
   PRIORITY_COLOR, RECURRENCE, RECURRENCE_LABEL, createId,
 } from '../storage';
 import { formatDateTime, timeLeft, formatTime } from '../calendar';
-import { theme, priorityBg } from '../theme';
+import { theme as _theme, priorityBg } from '../theme';
 import { scheduleAllAlarms, requestPermission, scheduleSnooze } from '../notifications';
+import { useTheme } from '../ThemeContext';
 
 export default function TasksScreen({ navigation }) {
+  const { theme } = useTheme();
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);

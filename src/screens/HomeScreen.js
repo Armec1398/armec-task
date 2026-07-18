@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { loadTasks, loadCategories, PRIORITY_LABEL, RECURRENCE } from '../storage';
 import { formatDateTime, timeLeft } from '../calendar';
-import { theme, priorityBg } from '../theme';
+import { theme as _theme, priorityBg } from '../theme';
 import { getNextUpcomingTask, requestPermission, scheduleAllAlarms } from '../notifications';
+import { useTheme } from '../ThemeContext';
 
 export default function HomeScreen() {
+  const { theme, toggle, isDark } = useTheme();
   const [next, setNext] = useState(null);
   const [cats, setCats] = useState([]);
   const [activeCount, setActiveCount] = useState(0);
@@ -32,6 +34,10 @@ export default function HomeScreen() {
       <View style={styles.hero}>
         <Text style={styles.heroTitle}>آرمک تسک</Text>
         <Text style={styles.heroSub}>مدیریت تسک‌های روزانه و هفتگی</Text>
+        <TouchableOpacity style={styles.themeBtn} onPress={toggle}>
+          <Ionicons name={isDark ? 'sunny-outline' : 'moon-outline'} size={18} color="#fff" />
+          <Text style={styles.themeBtnText}>{isDark ? 'روشن' : 'تاریک'}</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.nextCard}>
@@ -69,6 +75,8 @@ const styles = StyleSheet.create({
   hero: { alignItems: 'center', marginVertical: 20 },
   heroTitle: { fontSize: 30, fontWeight: '900', color: theme.primaryDark },
   heroSub: { fontSize: 14, color: theme.textLight, marginTop: 4 },
+  themeBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primaryDark, borderRadius: 14, paddingVertical: 8, paddingHorizontal: 16, marginTop: 12, alignSelf: 'center' },
+  themeBtnText: { color: '#fff', fontWeight: '700', marginLeft: 6 },
   nextCard: { backgroundColor: theme.surface, borderRadius: 18, padding: 18, marginBottom: 14, elevation: 2 },
   nextLabel: { fontSize: 13, color: theme.textLight, marginBottom: 6 },
   nextTitle: { fontSize: 20, fontWeight: '800', color: theme.text },

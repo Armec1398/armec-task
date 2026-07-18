@@ -1,4 +1,5 @@
-export const theme = {
+export const lightTheme = {
+  name: 'light',
   background: '#FFF8F0',
   surface: '#FFFFFF',
   primary: '#A0C4FF',
@@ -6,6 +7,9 @@ export const theme = {
   text: '#4A4A4A',
   textLight: '#8D8D8D',
   accent: '#FFADAD',
+  border: '#F0E6DC',
+  danger: '#FF8FA3',
+  success: '#95D5B2',
   pastel: {
     pink: '#FFADAD',
     peach: '#FFD6A5',
@@ -15,13 +19,33 @@ export const theme = {
     purple: '#BDB2FF',
     mint: '#9BF6FF',
   },
-  border: '#F0E6DC',
-  danger: '#FF8FA3',
-  success: '#95D5B2',
+};
+
+export const darkTheme = {
+  name: 'dark',
+  background: '#1A1B26',
+  surface: '#24283B',
+  primary: '#7AA2F7',
+  primaryDark: '#7AA2F7',
+  text: '#C0CAF5',
+  textLight: '#7982A9',
+  accent: '#F7768E',
+  border: '#2F3449',
+  danger: '#F7768E',
+  success: '#9ECE6A',
+  pastel: {
+    pink: '#F7768E',
+    peach: '#E0AF68',
+    yellow: '#E9D8A6',
+    green: '#9ECE6A',
+    blue: '#7AA2F7',
+    purple: '#BB9AF7',
+    mint: '#7DCFFF',
+  },
 };
 
 export const priorityBg = {
-  high: '#FFADAD',
-  medium: '#FFD6A5',
-  low: '#CAFFBF',
+  high: '#F7768E',
+  medium: '#E0AF68',
+  low: '#9ECE6A',
 };
