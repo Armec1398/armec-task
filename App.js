@@ -1,21 +1,35 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ThemeProvider } from './src/ThemeContext';
 import { theme } from './src/theme';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <ThemeProvider>
-      <View style={styles.container}>
-        <Ionicons name="home-outline" size={40} color={theme.primaryDark} />
-        <Text style={styles.text}>تست فقط Ionicons</Text>
-      </View>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: () => <Text style={{ fontSize: 20 }}>🏠</Text>,
+          })}
+        >
+          <Tab.Screen name="خانه">
+            {() => (
+              <View style={styles.container}>
+                <Text style={styles.text}>تست بدون Ionicons</Text>
+              </View>
+            )}
+          </Tab.Screen>
+        </Tab.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.background },
-  text: { fontSize: 20, fontWeight: '800', color: theme.text, marginTop: 10 },
+  text: { fontSize: 20, fontWeight: '800', color: theme.text },
 });
