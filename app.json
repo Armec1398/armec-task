@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "آرمک تسک",
-    "slug": "armec-task",
+    "slug": "armec",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -41,8 +41,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "armec-task-0001"
+        "projectId": "b86d9ab3-f73e-48ae-a151-2e75e8f01f9e"
       }
-    }
+    },
+    "owner": "armec1398"
   }
 }
