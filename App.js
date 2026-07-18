@@ -1,35 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ThemeProvider } from './src/ThemeContext';
-import { theme } from './src/theme';
-
-const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: () => <Text style={{ fontSize: 20 }}>🏠</Text>,
-          })}
-        >
-          <Tab.Screen name="خانه">
-            {() => (
-              <View style={styles.container}>
-                <Text style={styles.text}>تست بدون Ionicons</Text>
-              </View>
-            )}
-          </Tab.Screen>
-        </Tab.Navigator>
-      </NavigationContainer>
+      <View style={styles.container}>
+        <Text style={styles.text}>آرمک تسک - فقط ThemeProvider</Text>
+      </View>
     </ThemeProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.background },
-  text: { fontSize: 20, fontWeight: '800', color: theme.text },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#A0C4FF' },
+  text: { fontSize: 20, fontWeight: '800', color: '#fff' },
 });
