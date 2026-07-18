@@ -15,7 +15,7 @@ export default function App() {
           <Tab.Screen name="خانه">
             {() => (
               <View style={styles.container}>
-                <Text style={styles.text}>تست نویگیشن بدون آیکون</Text>
+                <Text style={styles.text}>تست نویگیشن v6</Text>
               </View>
             )}
           </Tab.Screen>
