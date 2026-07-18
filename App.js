@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
 import { ThemeProvider } from './src/ThemeContext';
 import { theme } from './src/theme';
 
@@ -12,15 +11,11 @@ export default function App() {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size }) => <Ionicons name="home-outline" size={size} color={color} />,
-          })}
-        >
+        <Tab.Navigator>
           <Tab.Screen name="خانه">
             {() => (
               <View style={styles.container}>
-                <Text style={styles.text}>تست نویگیشن</Text>
+                <Text style={styles.text}>تست نویگیشن بدون آیکون</Text>
               </View>
             )}
           </Tab.Screen>
