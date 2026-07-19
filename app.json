@@ -39,11 +39,6 @@
       ],
       "expo-font"
     ],
-    "extra": {
-      "eas": {
-        "projectId": "6441f697-0e36-403b-9179-a93c5b6c0a01"
-      }
-    },
     "owner": "armec1376"
   }
 }
