@@ -13,7 +13,7 @@ import { theme as _theme, priorityBg } from '../theme';
 import { scheduleAllAlarms, requestPermission, scheduleSnooze } from '../notifications';
 import { useTheme } from '../ThemeContext';
 
-export default function TasksScreen({ navigation }) {
+export default function TasksScreen() {
   const { theme } = useTheme();
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -30,7 +30,6 @@ export default function TasksScreen({ navigation }) {
   const [filter, setFilter] = useState('all');
 
   useEffect(() => { refresh(); }, []);
-  useEffect(() => { navigation.setOptions({ headerRight: () => null }); }, [navigation]);
 
   async function refresh() {
     const t = await loadTasks();
