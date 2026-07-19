@@ -1,17 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { ThemeProvider } from './src/ThemeContext';
-import * as Notifs from './src/notifications';
+import * as Notifications from 'expo-notifications';
 import { theme } from './src/theme';
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <View style={styles.container}>
-        <Text style={styles.text}>تست import notifications</Text>
-        <Text style={styles.sub}>{typeof Notifs.scheduleAllAlarms}</Text>
-      </View>
-    </ThemeProvider>
+    <View style={styles.container}>
+      <Text style={styles.text}>تست فقط import expo-notifications</Text>
+      <Text style={styles.sub}>{typeof Notifications.scheduleNotificationAsync}</Text>
+    </View>
   );
 }
 
