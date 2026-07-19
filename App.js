@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import * as Notifications from 'expo-notifications';
+import { ThemeProvider } from './src/ThemeContext';
 import { theme } from './src/theme';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>تست فقط import expo-notifications</Text>
-      <Text style={styles.sub}>{typeof Notifications.scheduleNotificationAsync}</Text>
-    </View>
+    <ThemeProvider>
+      <View style={styles.container}>
+        <Text style={styles.text}>تست بدون هیچ notification</Text>
+        <Text style={styles.sub}>اگه این باز شد یعنی notifications مشکل‌سازه</Text>
+      </View>
+    </ThemeProvider>
   );
 }
 
